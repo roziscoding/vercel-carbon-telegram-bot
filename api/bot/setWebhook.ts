@@ -7,7 +7,7 @@ export default async function (req: VercelRequest, res: VercelResponse) {
     return res.status(403).end()
   }
 
-  const bot = getBot(config.telegram.token)
+  const bot = await getBot(config.telegram.token, config.database.uri)
 
   await bot.telegram.setWebhook(`https://${config.vercel.domain}/api/bot/${config.telegram.token}`)
 
